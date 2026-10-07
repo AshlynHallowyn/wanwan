@@ -93,6 +93,12 @@ Netlify 会自动生成一个随机的 `netlify.app` 地址。可以在项目设
 
 ## 常见问题
 
+### 部署失败：Deploy directory '。' does not exist
+
+`。` 是中文句号，不是有效的发布目录。本项目直接发布仓库根目录的静态文件，不需要构建。在 Netlify 的 **Site configuration → Build & deploy → Build settings** 中，将 **Publish directory** 改为英文半角句点 `.`，将 **Base directory** 和 **Build command** 留空，然后重新部署。
+
+仓库根目录的 `netlify.toml` 已设置 `publish = "."`。请确认部署的分支或提交包含此文件，不要将 `.` 替换为 `。`。
+
 ### 部署后显示 404 或 Page not found
 
 检查 Netlify 的 **Publish directory** 是否为 `.`，并确认 `index.html` 位于上传或仓库的根目录，而不是多套了一层文件夹。
